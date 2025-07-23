@@ -1,6 +1,58 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <title>Producto Inventario QR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; padding: 0; }
+        .container { max-width: 500px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px #0002; padding: 32px; }
+        h1 { color: #2980b9; }
+        .info { margin-top: 24px; }
+        .notfound { color: #e74c3c; font-weight: bold; }
+    </style>
+    </head>
+<body>
+<div class="container">
+    <h1>Información del Producto</h1>
+    <div id="info" class="info">Cargando...</div>
+</div>
+<script>
+// Obtiene el serial de la URL
+function getSerial() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('serial');
+}
+
+async function cargarProducto() {
+    const serial = getSerial();
+    if (!serial) {
+        document.getElementById('info').innerHTML = '<span class="notfound">No se proporcionó un número de serie.</span>';
+        return;
+    }
+    try {
+        const resp = await fetch('productos.json');
+        const productos = await resp.json();
+        const prod = productos.find(p => p["Numero Serial"] == serial);
+        if (!prod) {
+            document.getElementById('info').innerHTML = '<span class="notfound">Producto no encontrado.</span>';
+            return;
+        let html = '<ul>';
+        for (const [k, v] of Object.entries(prod)) {
+            html += `<li><b>${k}:</b> ${v}</li>`;
+        html += '</ul>';
+        document.getElementById('info').innerHTML = html;
+    } catch (e) {
+        document.getElementById('info').innerHTML = '<span class="notfound">Error al cargar los datos.</span>';
+    }
+}
+cargarProducto();
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
   <meta charset="UTF-8">
   <title>Producto</title>
   <style>
