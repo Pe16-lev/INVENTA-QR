@@ -1,60 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Producto Inventario QR</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; padding: 0; }
-        .container { max-width: 500px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px #0002; padding: 32px; }
-        h1 { color: #2980b9; }
-        .info { margin-top: 24px; }
-        .notfound { color: #e74c3c; font-weight: bold; }
-    </style>
-    </head>
-<body>
-<div class="container">
-    <h1>Información del Producto</h1>
-    <div id="info" class="info">Cargando...</div>
-</div>
-<script>
-// Obtiene el serial de la URL
-function getSerial() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get('serial');
-}
-
-async function cargarProducto() {
-    const serial = getSerial();
-    if (!serial) {
-        document.getElementById('info').innerHTML = '<span class="notfound">No se proporcionó un número de serie.</span>';
-        return;
-    }
-    try {
-        const resp = await fetch('productos.json');
-        const productos = await resp.json();
-        const prod = productos.find(p => p["Numero Serial"] == serial);
-        if (!prod) {
-            document.getElementById('info').innerHTML = '<span class="notfound">Producto no encontrado.</span>';
-            return;
-        let html = '<ul>';
-        for (const [k, v] of Object.entries(prod)) {
-            html += `<li><b>${k}:</b> ${v}</li>`;
-        html += '</ul>';
-        document.getElementById('info').innerHTML = html;
-    } catch (e) {
-        document.getElementById('info').innerHTML = '<span class="notfound">Error al cargar los datos.</span>';
-    }
-}
-cargarProducto();
-</script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="es">
-<head>
   <meta charset="UTF-8">
   <title>Producto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body { font-family: Arial, sans-serif; background: #f5f5f5; }
     .container { max-width: 500px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 2px 8px #ccc; }
@@ -77,21 +26,22 @@ cargarProducto();
       .then(r => r.json())
       .then(productos => {
         const serial = getSerial();
-        const prod = productos.find(p => p.Numero_Serial === serial);
+        // Ajustar los nombres de campo según el JSON generado por Python
+        const prod = productos.find(p => p["Numero Serial"] == serial);
         const info = document.getElementById('info');
         if (prod) {
           info.innerHTML = `
-            <strong>Número de serie:</strong> ${prod.Numero_Serial}<br>
-            <strong>Tipo de equipo:</strong> ${prod.Tipo_de_equipo}<br>
-            <strong>Marca:</strong> ${prod.Marca}<br>
-            <strong>Modelo:</strong> ${prod.Modelo}<br>
-            <strong>Cantidad:</strong> ${prod.Cantidad}<br>
-            <strong>Fecha de adquisición:</strong> ${prod.Fecha_adquisicion}<br>
-            <strong>Estado actual:</strong> ${prod.Estado_actual}<br>
-            <strong>Garantía:</strong> ${prod.Garantia}<br>
-            <strong>Proveedor:</strong> ${prod.Proveedor}<br>
-            <strong>Costo:</strong> $${prod.Costo}<br>
-            <strong>Responsable:</strong> ${prod.Responsable}<br>
+            <strong>Número de serie:</strong> ${prod["Numero Serial"]}<br>
+            <strong>Tipo de equipo:</strong> ${prod["Tipo de equipo"]}<br>
+            <strong>Marca:</strong> ${prod["Marca"]}<br>
+            <strong>Modelo:</strong> ${prod["Modelo"]}<br>
+            <strong>Cantidad:</strong> ${prod["Cantidad"]}<br>
+            <strong>Fecha de adquisición:</strong> ${prod["Fecha de adquisición"] || prod["Fecha_adquisicion"] || ""}<br>
+            <strong>Estado actual:</strong> ${prod["Estado actual"] || prod["Estado_actual"] || ""}<br>
+            <strong>Garantía:</strong> ${prod["Garantía"] || prod["Garantia"] || ""}<br>
+            <strong>Proveedor:</strong> ${prod["Proveedor"]}<br>
+            <strong>Costo:</strong> $${prod["Costo"]}<br>
+            <strong>Responsable:</strong> ${prod["Responsable"]}<br>
           `;
         } else {
           info.innerHTML = `<p class='notfound'>Producto no encontrado.</p>`;
