@@ -66,7 +66,7 @@ def iniciar_ventana_inventario():
     tk.Label(menu_lateral, text="Menú", font=("Arial", 16, "bold"), bg="#f5f5f5").pack(pady=(20, 10))
 
     # Solo botones principales
-    tk.Button(menu_lateral, text="Salir", font=("Arial", 12), bg="#e0e0e0", command=root.quit).pack(fill="x", padx=20, pady=5)
+    tk.Button(menu_lateral, text="Salir", font=("Arial", 12), bg="#e0e0e0", command=root.destroy).pack(fill="x", padx=20, pady=5)
 
     def cambiar_cuenta():
         root.destroy()
@@ -380,15 +380,7 @@ def iniciar_ventana_inventario():
         if not qr_path:
             return  # El usuario canceló
         generar_qr(datos_qr, qr_path)
-
-        qr_img = Image.open(qr_path)
-        qr_toplevel = tk.Toplevel(root)
-        qr_toplevel.title("Código QR generado")
-        img_tk = ImageTk.PhotoImage(qr_img)
-        lbl_img = tk.Label(qr_toplevel, image=img_tk)
-        lbl_img.image = img_tk
-        lbl_img.pack(padx=10, pady=10)
-        tk.Label(qr_toplevel, text=f"Producto: {numero_serial} - {modelo}").pack(pady=(0, 10))
+        # Ya no se muestra la ventana con la imagen del QR
         messagebox.showinfo("Éxito", f"QR generado y guardado en {qr_path}")
 
     # --- Frame tabla con título ---
