@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Producto</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f5f5f5; }
+    .container { max-width: 500px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 2px 8px #ccc; }
+    h2 { color: #2980b9; }
+    .notfound { color: #e74c3c; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Datos del producto</h2>
+    <div id="info"></div>
+  </div>
+  <script>
+    // Obtener el número de serie de la URL: ?serial=12345
+    function getSerial() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('serial');
+    }
+    fetch('productos.json')
+      .then(r => r.json())
+      .then(productos => {
+        const serial = getSerial();
+        const prod = productos.find(p => p.Numero_Serial === serial);
+        const info = document.getElementById('info');
+        if (prod) {
+          info.innerHTML = `
+            <strong>Número de serie:</strong> ${prod.Numero_Serial}<br>
+            <strong>Tipo de equipo:</strong> ${prod.Tipo_de_equipo}<br>
+            <strong>Marca:</strong> ${prod.Marca}<br>
+            <strong>Modelo:</strong> ${prod.Modelo}<br>
+            <strong>Cantidad:</strong> ${prod.Cantidad}<br>
+            <strong>Fecha de adquisición:</strong> ${prod.Fecha_adquisicion}<br>
+            <strong>Estado actual:</strong> ${prod.Estado_actual}<br>
+            <strong>Garantía:</strong> ${prod.Garantia}<br>
+            <strong>Proveedor:</strong> ${prod.Proveedor}<br>
+            <strong>Costo:</strong> $${prod.Costo}<br>
+            <strong>Responsable:</strong> ${prod.Responsable}<br>
+          `;
+        } else {
+          info.innerHTML = `<p class='notfound'>Producto no encontrado.</p>`;
+        }
+      });
+  </script>
+</body>
+</html>
