@@ -306,6 +306,7 @@ def iniciar_ventana_inventario():
                 entrada.grid(row=row, column=col+1, sticky="w", padx=10, pady=10)
                 entradas[campo] = entrada
         def guardar_producto():
+            import subprocess
             datos = []
             for c in campos:
                 if c == "Garantía":
@@ -317,14 +318,19 @@ def iniciar_ventana_inventario():
             if not all(datos):
                 messagebox.showwarning("Campos incompletos", "Por favor completa todos los campos.")
                 return
-            # Ya no se fuerza a número, se permite cualquier texto en Cantidad y Costo
             try:
                 agregar_producto(*datos)
-                messagebox.showinfo("Éxito", "Producto agregado correctamente.")
+                # Exportar productos automáticamente
+                subprocess.run(["python", "exportar_productos.py"], check=True)
+                # Hacer commit y push automático
+                subprocess.run(["git", "add", "web/productos.json"], check=True)
+                subprocess.run(["git", "commit", "-m", "Actualización automática de productos.json"], check=True)
+                subprocess.run(["git", "push"], check=True)
+                messagebox.showinfo("Éxito", "Producto agregado y datos web actualizados.")
                 ventana_agregar.destroy()
                 mostrar_productos()
             except Exception as e:
-                messagebox.showerror("Error", f"No se pudo guardar el producto:\n{e}")
+                messagebox.showerror("Error", f"No se pudo guardar el producto ni actualizar la web:\n{e}")
         total_filas = max(6, len(campos) - 6)
         btn_guardar = tk.Button(
             frame_formulario,
@@ -361,7 +367,7 @@ def iniciar_ventana_inventario():
         numero_serial = valores[0]
         modelo = valores[3]
         # Cambiar el QR para que sea una URL con el número de serie
-        url_base = "https://tuservidor.com/producto/"
+        url_base = "https://A983-del.github.io/INVENTA-QR/web/producto.html?serial="
         datos_qr = f"{url_base}{numero_serial}"
         # Preguntar al usuario dónde guardar el QR
         from tkinter import filedialog
