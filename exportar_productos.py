@@ -3,33 +3,21 @@ import json
 import os
 
 DB_NAME = 'inventario.db'
-JSON_PATH = os.path.join('web', 'productos.json')
+JSON_PATH = os.path.join('telaraña', 'productos.json')  # Cambiado a 'telaraña'
 
 campos = [
     "Numero Serial", "Tipo de equipo", "Marca", "Modelo", "Cantidad",
-    "Fecha_adquisicion", "Estado_actual", "Garantia", "Proveedor", "Costo", "Responsable"
+    "Fecha de adquisición", "Estado actual", "Garantía", "Proveedor", "Costo", "Responsable"
 ]
 
 def exportar_productos():
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
-    cursor.execute('SELECT * FROM productos')
+    cursor.execute('SELECT "Numero Serial", "Tipo de equipo", "Marca", "Modelo", "Cantidad", "Fecha de adquisición", "Estado actual", "Garantía", "Proveedor", "Costo", "Responsable" FROM productos')
     productos = cursor.fetchall()
     lista = []
     for prod in productos:
-        item = {
-            "Numero_Serial": prod[0],
-            "Tipo_de_equipo": prod[1],
-            "Marca": prod[2],
-            "Modelo": prod[3],
-            "Cantidad": prod[4],
-            "Fecha_adquisicion": prod[5],
-            "Estado_actual": prod[6],
-            "Garantia": prod[7],
-            "Proveedor": prod[8],
-            "Costo": prod[9],
-            "Responsable": prod[10]
-        }
+        item = {campo: valor for campo, valor in zip(campos, prod)}
         lista.append(item)
     conn.close()
     with open(JSON_PATH, 'w', encoding='utf-8') as f:
