@@ -687,28 +687,13 @@ def iniciar_ventana_inventario():
                 entrada.grid(row=row, column=col+1, sticky="w", padx=10, pady=10)
                 entradas[campo] = entrada
             elif campo == "Garantía":
-                frame_garantia = tk.Frame(frame_formulario, bg="white")
-                # Obtener valores actuales de la garantía (ejemplo: '2 años, 3 meses, 10 días')
-                anos, meses, dias = "0", "0", "0"
+                entrada = tk.Entry(frame_formulario, width=30, font=("Arial", 11))
                 if len(valores) == len(campos):
-                    import re
-                    match = re.match(r"(\d+) años?, (\d+) meses?, (\d+) días?", str(valores[i]))
-                    if match:
-                        anos, meses, dias = match.groups()
-                cb_anos = ttk.Combobox(frame_garantia, values=[str(j) for j in range(0, 11)], width=4, state="readonly")
-                cb_anos.set(anos)
-                tk.Label(frame_garantia, text="Años", bg="white").pack(side="left")
-                cb_anos.pack(side="left")
-                cb_meses = ttk.Combobox(frame_garantia, values=[str(j) for j in range(0, 13)], width=4, state="readonly")
-                cb_meses.set(meses)
-                tk.Label(frame_garantia, text="Meses", bg="white").pack(side="left")
-                cb_meses.pack(side="left")
-                cb_dias = ttk.Combobox(frame_garantia, values=[str(j) for j in range(0, 32)], width=4, state="readonly")
-                cb_dias.set(dias)
-                tk.Label(frame_garantia, text="Días", bg="white").pack(side="left")
-                cb_dias.pack(side="left")
-                frame_garantia.grid(row=row, column=col+1, sticky="w", padx=10, pady=10)
-                entradas[campo] = (cb_anos, cb_meses, cb_dias)
+                    entrada.insert(0, valores[i])
+                else:
+                    entrada.insert(0, "")
+                entrada.grid(row=row, column=col+1, sticky="w", padx=10, pady=10)
+                entradas[campo] = entrada
             else:
                 entrada = tk.Entry(frame_formulario, width=30, font=("Arial", 11))
                 if len(valores) == len(campos):
@@ -718,18 +703,11 @@ def iniciar_ventana_inventario():
                 entrada.grid(row=row, column=col+1, sticky="w", padx=10, pady=10)
                 entradas[campo] = entrada
         def guardar_edicion():
-            nuevos_datos = []
-            for c in campos:
-                if c == "Garantía":
-                    cb_anos, cb_meses, cb_dias = entradas[c]
-                    valor = f"{cb_anos.get()} años, {cb_meses.get()} meses, {cb_dias.get()} días"
-                    nuevos_datos.append(valor)
-                else:
-                    nuevos_datos.append(entradas[c].get().strip())
+            nuevos_datos = [entradas[c].get().strip() for c in campos]
             if not all(nuevos_datos):
                 messagebox.showwarning("Campos incompletos", "Por favor completa todos los campos.")
                 return
-            # Ya no se fuerza a número, se permite cualquier texto en Cantidad y Costo
+            # Ya no se fuerza a número, se permite cualquier texto en Cantidad, Costo y Garantía
             try:
                 import sqlite3
                 conn = sqlite3.connect('inventario.db')
