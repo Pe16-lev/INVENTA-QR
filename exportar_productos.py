@@ -3,7 +3,7 @@ import json
 import os
 
 DB_NAME = 'inventario.db'
-JSON_PATH = os.path.join('codigo', 'productos.json')  # Cambiado a 'telaraña'
+JSON_PATH = os.path.join('codigo', 'productos.json')  # Cambiado a codigo
 
 campos = [
     "Numero Serial", "Tipo de equipo", "Marca", "Modelo", "Cantidad",
