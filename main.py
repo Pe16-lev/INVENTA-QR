@@ -323,7 +323,7 @@ def iniciar_ventana_inventario():
                 # Exportar productos automáticamente
                 subprocess.run(["python", "exportar_productos.py"], check=True)
                 # Hacer commit y push automático
-                subprocess.run(["git", "add", "telaraña/productos.json"], check=True)
+                subprocess.run(["git", "add", "codigo/productos.json"], check=True)
                 subprocess.run(["git", "commit", "-m", "Actualización automática de productos.json"], check=True)
                 subprocess.run(["git", "push"], check=True)
                 messagebox.showinfo("Éxito", "Producto agregado y datos web actualizados.")
