@@ -323,7 +323,7 @@ def iniciar_ventana_inventario():
                 # Exportar productos automáticamente
                 subprocess.run(["python", "exportar_productos.py"], check=True)
                 # Hacer commit y push automático
-                subprocess.run(["git", "add", "codigo/productos.json"], check=True)
+                subprocess.run(["git", "add", "productos.json"], check=True)
                 subprocess.run(["git", "commit", "-m", "Actualización automática de productos.json"], check=True)
                 subprocess.run(["git", "push"], check=True)
                 messagebox.showinfo("Éxito", "Producto agregado y datos web actualizados.")
@@ -550,7 +550,7 @@ def iniciar_ventana_inventario():
         numero_serial = valores[0]
         modelo = valores[3]
         # Cambiar el QR para que sea una URL con el número de serie
-        url_base = "https://Pe16-lev.github.io/INVENTA-QR/codigo/producto.json?serial="
+        url_base = "https://pe16-lev.github.io/INVENTA-QR/?serial=NUMERO"
         datos_qr = f"{url_base}{numero_serial}"
         # Preguntar al usuario dónde guardar el QR
         from tkinter import filedialog
