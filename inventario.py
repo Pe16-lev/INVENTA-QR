@@ -63,5 +63,19 @@ def agregar_producto(Numero_Serial, Tipo_de_equipo, Marca, Modelo, Cantidad, Fec
 
 
 def buscar_producto_por_qr(codigo_qr):
-    # Esta función ya no es válida porque la columna codigo_qr fue eliminada
-    return None
+    '''Busca un producto en la base de datos usando el Numero Serial (dato del QR).'''
+    conn = sqlite3.connect(DB_NAME)
+    cursor = conn.cursor()
+    cursor.execute('''
+        SELECT "Numero Serial", "Tipo de equipo", Marca, Modelo, Cantidad, Fecha_adquisicion, Estado_actual, Garantia, Proveedor, Costo, Responsable
+        FROM productos
+        WHERE "Numero Serial" = ?
+    ''', (codigo_qr,))
+    resultado = cursor.fetchone()
+    conn.close()
+    if resultado:
+        # Devuelve un diccionario con los datos del producto
+        columnas = ["Numero Serial", "Tipo de equipo", "Marca", "Modelo", "Cantidad", "Fecha_adquisicion", "Estado_actual", "Garantia", "Proveedor", "Costo", "Responsable"]
+        return dict(zip(columnas, resultado))
+    else:
+        return None
