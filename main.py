@@ -367,7 +367,7 @@ def iniciar_ventana_inventario():
         numero_serial = valores[0]
         modelo = valores[3]
         # Cambiar el QR para que sea una URL con el número de serie
-        url_base = "https://Pe16-lev.github.io/INVENTA-QR/codigo/producto.json?serial="
+        url_base = "https://pe16-lev.github.io/INVENTA-QR/?serial=NUMERO"
         datos_qr = f"{url_base}{numero_serial}"
         print(f"DEBUG QR: {datos_qr}")  # Depuración: muestra la URL que se codificará en el QR
         # Preguntar al usuario dónde guardar el QR
@@ -410,98 +410,7 @@ def iniciar_ventana_inventario():
     scrollbar_y.pack(side="right", fill="y")
 
     tabla.pack(fill="both", expand=True, padx=10, pady=10)
-
     # Eliminar función duplicada, ya existe la versión correcta más arriba
-
-    def abrir_ventana_agregar():
-        ventana_agregar = tk.Toplevel()
-        ventana_agregar.title("Agregar Producto")
-        ventana_agregar.state('zoomed')
-        ventana_agregar.configure(bg="#8CA89C")
-        ventana_agregar.grab_set()
-        # ...
-
-        frame_formulario = tk.Frame(ventana_agregar, bg="white", bd=2, relief="groove")
-        frame_formulario.place(relx=0.5, rely=0.5, anchor="center", relwidth=0.9, relheight=0.9)
-
-        campos = [
-            "Número de serie", "Tipo de equipo", "Marca", "Modelo", "Cantidad",
-            "Fecha de adquisición", "Estado actual", "Garantía",
-            "Proveedor", "Costo", "Responsable"
-        ]
-        entradas = {}
-
-        iconos = {
-            "Número de serie": "🔢",
-            "Tipo de equipo": "🖥️",
-            "Marca": "🏷️",
-            "Modelo": "📦",
-            "Cantidad": "🔢",
-            "Fecha de adquisición": "📅",
-            "Estado actual": "📊",
-            "Garantía": "📃",
-            "Proveedor": "🏭",
-            "Costo": "💰",
-            "Responsable": "👤"
-        }
-
-        for i, campo in enumerate(campos):
-            col = 0 if i < 6 else 2
-            row = i if i < 6 else i - 6
-            emoji = iconos.get(campo, "")
-            label = tk.Label(frame_formulario, text=f"{emoji} {campo}:", bg="white", anchor="w", font=("Arial", 12))
-            label.grid(row=row, column=col, sticky="e", padx=20, pady=10)
-
-            if campo == "Fecha de adquisición":
-                entrada = DateEntry(frame_formulario, date_pattern='yyyy-mm-dd', width=25)
-            elif campo == "Estado actual":
-                entrada = ttk.Combobox(frame_formulario, values=["Nuevo", "Usado", "Dañado", "Baja"], state="readonly", width=28, font=("Arial", 11))
-                entrada.set("Nuevo")
-            else:
-                entrada = tk.Entry(frame_formulario, width=30, font=("Arial", 11))
-            entrada.grid(row=row, column=col+1, sticky="w", padx=10, pady=10)
-            entradas[campo] = entrada
-
-        def guardar_producto():
-            datos = [entradas[c].get().strip() for c in campos]
-            if not all(datos):
-                messagebox.showwarning("Campos incompletos", "Por favor completa todos los campos.")
-                return
-            # Ya no se fuerza a número, se permite cualquier texto en Cantidad y Costo
-            try:
-                agregar_producto(*datos)
-                messagebox.showinfo("Éxito", "Producto agregado correctamente.")
-                ventana_agregar.destroy()
-                mostrar_productos()
-            except Exception as e:
-                messagebox.showerror("Error", f"No se pudo guardar el producto:\n{e}")
-
-        total_filas = max(6, len(campos) - 6)
-        btn_guardar = tk.Button(
-            frame_formulario,
-            text="💾 Guardar producto",
-            command=guardar_producto,
-            bg="#4CAF50",
-            fg="white",
-            font=("Arial", 12, "bold"),
-            padx=20,
-            pady=10
-        )
-        btn_guardar.grid(row=total_filas + 1, column=0, columnspan=4, pady=30)
-
-    btn_ventana_agregar = tk.Button(
-        frame_botones_superior,
-        text="Agregar producto",
-        command=abrir_ventana_agregar,
-        image=root.icono_agregar,
-        compound="left" if root.icono_agregar else None,
-        width=160,
-        height=40,
-        padx=2,
-        pady=2,
-        bg='white',
-        activebackground='white'
-    )
     btn_ventana_agregar.pack(side="left", padx=5)
     def buscar_producto_gui():
         file_path = filedialog.askopenfilename(
