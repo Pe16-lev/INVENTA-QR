@@ -1,15 +1,15 @@
 [
   {
-    "Numero_Serial": "serie",
-    "Tipo_de_equipo": "movil",
-    "Marca": "wqdhoqwh",
-    "Modelo": "kjbqkj",
-    "Cantidad": "sxnakj",
-    "Fecha_adquisicion": "2025-07-14",
-    "Estado_actual": "Usado",
-    "Garantia": "0 años, 0 meses, 0 días",
-    "Proveedor": "xajpa",
-    "Costo": "sknxo",
-    "Responsable": "xn"
+    "Numero Serial": "k000083080",
+    "Tipo de equipo": "bateria",
+    "Marca": "toshiba",
+    "Modelo": "PA3534U-1BRS",
+    "Cantidad": 1,
+    "Fecha_adquisicion": "2025-07-25",
+    "Estado_actual": "Nuevo",
+    "Garantia": "2 años",
+    "Proveedor": "toshiba",
+    "Costo": "$1.706",
+    "Responsable": "supervisor"
   }
 ]

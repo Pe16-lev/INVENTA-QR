@@ -23,7 +23,8 @@ def exportar_productos():
     campos = obtener_campos_tabla()
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
-    cursor.execute(f'SELECT {", ".join([f"\"{c}\"" for c in campos])} FROM productos')
+    columnas_sql = ', '.join([f'"{c}"' for c in campos])
+    cursor.execute(f'SELECT {columnas_sql} FROM productos')
     productos = cursor.fetchall()
     lista = []
     for prod in productos:
