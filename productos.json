@@ -1,19 +1,6 @@
 [
   {
-    "Numero Serial": "k000083080",
-    "Tipo de equipo": "bateria",
-    "Marca": "toshiba",
-    "Modelo": "PA3534U-1BRS",
-    "Cantidad": 1,
-    "Fecha_adquisicion": "2025-07-25",
-    "Estado_actual": "Nuevo",
-    "Garantia": "2 años",
-    "Proveedor": "toshiba",
-    "Costo": "$1.706",
-    "Responsable": "supervisor"
-  },
-  {
-    "Numero Serial": "k000083080",
+    "Numero Serial": "k00083080",
     "Tipo de equipo": "Laptop",
     "Marca": "Dell",
     "Modelo": "Latitude 5430",
