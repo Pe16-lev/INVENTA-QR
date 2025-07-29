@@ -367,7 +367,7 @@ def iniciar_ventana_inventario():
         numero_serial = valores[0]
         modelo = valores[3]
         # Cambiar el QR para que sea una URL con el número de serie
-        url_base = "https://pe16-lev.github.io/INVENTA-QR/?serial=NUMERO"
+        url_base = "https://pe16-lev.github.io/INVENTA-QR/index.html?serial=NUMERO"
         datos_qr = f"{url_base}{numero_serial}"
         print(f"DEBUG QR: {datos_qr}")  # Depuración: muestra la URL que se codificará en el QR
         # Preguntar al usuario dónde guardar el QR
@@ -459,7 +459,7 @@ def iniciar_ventana_inventario():
         numero_serial = valores[0]
         modelo = valores[3]
         # Cambiar el QR para que sea una URL con el número de serie
-        url_base = "https://pe16-lev.github.io/INVENTA-QR/?serial=NUMERO"
+        url_base = "https://pe16-lev.github.io/INVENTA-QR/index.html?serial=NUMERO"
         datos_qr = f"{url_base}{numero_serial}"
         # Preguntar al usuario dónde guardar el QR
         from tkinter import filedialog
