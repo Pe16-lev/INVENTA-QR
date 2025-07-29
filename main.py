@@ -453,10 +453,7 @@ def iniciar_ventana_inventario():
         valores = item['values']
         numero_serial = valores[0]
         modelo = valores[3]
-        # Cambiar el QR para que sea una URL con el número de serie
-        url_base = "https://pe16-lev.github.io/INVENTA-QR/index.html?serial=NUMERO"
-        datos_qr = f"{url_base}{numero_serial}"
-        # Preguntar al usuario dónde guardar el QR
+        # Solo pasar el número de serie, generador_qr.py arma el link correcto
         from tkinter import filedialog
         qr_path = filedialog.asksaveasfilename(
             defaultextension=".png",
@@ -466,8 +463,7 @@ def iniciar_ventana_inventario():
         )
         if not qr_path:
             return  # El usuario canceló
-        generar_qr(datos_qr, qr_path)
-        # Ya no se muestra la ventana con la imagen del QR
+        generar_qr(numero_serial, qr_path)
         messagebox.showinfo("Éxito", f"QR generado y guardado en {qr_path}")
 
     btn_generar_qr = tk.Button(
