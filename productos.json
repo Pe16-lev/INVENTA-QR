@@ -50,5 +50,18 @@
     "Proveedor": "Electonica del sureste",
     "Costo": "$4,200",
     "Responsable": "supervisor"
+  },
+  {
+    "Numero Serial": "23TH0013",
+    "Tipo de equipo": "Swith de red",
+    "Marca": "TP-LINK",
+    "Modelo": "TL-SG1016D",
+    "Cantidad": 1,
+    "Fecha_adquisicion": "2021-06-15",
+    "Estado_actual": "Dañado",
+    "Garantia": "0 años, 0 meses, 0 días",
+    "Proveedor": "Red y Conectividad S.A. de C.V.",
+    "Costo": "$11,950",
+    "Responsable": "supervisor de red"
   }
 ]
