@@ -11,5 +11,18 @@
     "Proveedor": "Tecnologia Maya",
     "Costo": "$23,500",
     "Responsable": "supervisor"
+  },
+  {
+    "Numero Serial": "A10008380",
+    "Tipo de equipo": "Impresora",
+    "Marca": "HP",
+    "Modelo": "Laser Jet Pro",
+    "Cantidad": 2,
+    "Fecha_adquisicion": "2022-09-30",
+    "Estado_actual": "Dañado",
+    "Garantia": "0 años, 0 meses, 0 días",
+    "Proveedor": "Soluciones Garficas del Caribe",
+    "Costo": "$7,800",
+    "Responsable": "supervisor"
   }
 ]
