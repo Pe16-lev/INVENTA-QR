@@ -63,5 +63,18 @@
     "Proveedor": "Red y Conectividad S.A. de C.V.",
     "Costo": "$11,950",
     "Responsable": "supervisor de red"
+  },
+  {
+    "Numero Serial": "QS0024TJ",
+    "Tipo de equipo": "Camara de vigilancia",
+    "Marca": "Hikvision",
+    "Modelo": "2CE56DOT",
+    "Cantidad": 5,
+    "Fecha_adquisicion": "2025-07-01",
+    "Estado_actual": "Nuevo",
+    "Garantia": "3 años, 0 meses, 0 días",
+    "Proveedor": "Seguritec MX",
+    "Costo": "$8,450 C/U",
+    "Responsable": "Logistica"
   }
 ]
