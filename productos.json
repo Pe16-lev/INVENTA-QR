@@ -89,5 +89,18 @@
     "Proveedor": "Carso Solucions",
     "Costo": "$23,500",
     "Responsable": "supervisor"
+  },
+  {
+    "Numero Serial": "1A2B3C4D",
+    "Tipo de equipo": "Laptop",
+    "Marca": "Lenovo",
+    "Modelo": "Thinkpad L13yoga",
+    "Cantidad": 1,
+    "Fecha_adquisicion": "2024-01-01",
+    "Estado_actual": "Nuevo",
+    "Garantia": "2 años, 0 meses, 0 días",
+    "Proveedor": "Lenovo",
+    "Costo": "$8,000",
+    "Responsable": "supervisor"
   }
 ]
