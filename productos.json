@@ -11,5 +11,18 @@
     "Proveedor": "toshiba",
     "Costo": "$1.706",
     "Responsable": "supervisor"
+  },
+  {
+    "Numero Serial": "k000083080",
+    "Tipo de equipo": "Laptop",
+    "Marca": "Dell",
+    "Modelo": "Latitude 5430",
+    "Cantidad": 1,
+    "Fecha_adquisicion": "2023-05-12",
+    "Estado_actual": "Usado",
+    "Garantia": "3 años, 0 meses, 0 días",
+    "Proveedor": "Tecnologia Maya",
+    "Costo": "$23,500",
+    "Responsable": "supervisor"
   }
 ]
