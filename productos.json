@@ -24,5 +24,18 @@
     "Proveedor": "Soluciones Garficas del Caribe",
     "Costo": "$7,800",
     "Responsable": "supervisor"
+  },
+  {
+    "Numero Serial": "C3002830",
+    "Tipo de equipo": "Proyector",
+    "Marca": "Epson",
+    "Modelo": "Power Lite X49",
+    "Cantidad": 1,
+    "Fecha_adquisicion": "2025-02-18",
+    "Estado_actual": "Usado",
+    "Garantia": "2 años, 0 meses, 0 días",
+    "Proveedor": "Visual Tech",
+    "Costo": "$9,250",
+    "Responsable": "supervisor"
   }
 ]
