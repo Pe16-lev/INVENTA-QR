@@ -76,5 +76,18 @@
     "Proveedor": "Seguritec MX",
     "Costo": "$8,450 C/U",
     "Responsable": "Logistica"
+  },
+  {
+    "Numero Serial": "40D202E49",
+    "Tipo de equipo": "Acess Point",
+    "Marca": "Ubiquiti",
+    "Modelo": "UniFi APLite",
+    "Cantidad": 1,
+    "Fecha_adquisicion": "2025-07-01",
+    "Estado_actual": "Nuevo",
+    "Garantia": "3 años, 0 meses, 0 días",
+    "Proveedor": "Carso Solucions",
+    "Costo": "$23,500",
+    "Responsable": "supervisor"
   }
 ]
