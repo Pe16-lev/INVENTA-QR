@@ -12,7 +12,7 @@ except Exception:
 
 BASE_DIR = os.path.dirname(__file__)
 DB_NAME = "inventario.db"
-FONDO_PATH = os.path.join(BASE_DIR, "login_fondo.png")
+FONDO_PATH = os.path.join(BASE_DIR, "Palmaia.jpg")
 
 ICONO_USER_PATH = os.path.join(BASE_DIR, "icono_usuario.png")
 ICONO_EMAIL_PATH = os.path.join(BASE_DIR, "icono_email.png")
